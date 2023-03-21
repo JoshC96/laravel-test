@@ -43,6 +43,8 @@ Run seed queries
 4. 
 
 - Create controllers inside an API directory in /app/controllers that extend `Controller.php`. Consider `#[Route('lead')]` syntax.  
+    `php artisan make:request V1\LeadRequest`
+
      - Key point: "Your Controller should have minimal logic"
      - Key point: "You should use a Repository to interact with the database"
      - Key point: "API requests should be validated"
