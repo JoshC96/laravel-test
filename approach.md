@@ -4,8 +4,8 @@
 1. 
 
 Generate models 
-`php artisan make:model Models/Lead`
-`php artisan make:model Models/Address`
+`php artisan make:model Lead -m` // -m will geneate a migration file alongside the model
+`php artisan make:model Address  -m`
 
 - Lead
     - First name
@@ -24,9 +24,7 @@ Key point: "Each Lead should have one Address established by a One-to-One relati
 
 2. 
 
-Generate migrations 
-`php artisan make:migration create_table_name --create=lead`
-`php artisan make:migration create_table_name --create=address`
+Run migrations 
 
 Migrate `php artisan migrate`
 
@@ -34,14 +32,12 @@ Migrate `php artisan migrate`
 3.
 
 Seed the DB using faker
-`php artisan make:seeder LeadSeeder`
-`php artisan make:seeder AddressSeeder`
+`php artisan make:seeder LeadSeeder` // We only need 1 seeder because it's a 1 to 1 relationship and we can seed addresses in the lead seeder.
 
 Key point: "Each Lead should have one Address established by a One-to-One relationship"
 
 Run seed queries
 `php artisan db:seed --class=LeadSeeder`
-`php artisan db:seed --class=AddressSeeder`
 
 
 4. 
