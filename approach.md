@@ -44,13 +44,14 @@ Run seed queries
 
 - Create controllers inside an API directory in /app/controllers that extend `Controller.php`. Consider `#[Route('lead')]` syntax.  
     `php artisan make:controller LeadController --model=Lead --resource --requests`
-
      - Key point: "Your Controller should have minimal logic"
      - Key point: "You should use a Repository to interact with the database"
      - Key point: "API requests should be validated"
 - Update the routes/api.php file with the new endpoints for GET, PUT, POST, DELETE. 
 - Send back dummy data for now.
 - Set the API version to 1.0
+
+In-development note: `return new LeadCollection(Lead::paginate());` doesn't return paginated data, would like to find out why.
 
 5. 
 

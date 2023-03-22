@@ -6,16 +6,27 @@ use App\Http\Requests\V1\StoreLeadRequest;
 use App\Http\Requests\V1\UpdateLeadRequest;
 use App\Models\Lead;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\LeadResource;
+use App\Http\Resources\V1\LeadCollection;
+use App\Services\V1\LeadQuery;
+use Illuminate\Http\Request;
 
 class LeadController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return Lead::all();
+        $filter = new LeadQuery();
+        $queryItems = $filter->transform($request); //return new LeadCollection(Lead::paginate());
+
+        if(count($queryItems) === 0) {
+            return new LeadCollection(Lead::paginate());
+        } else {
+            return new LeadCollection(Lead::where($queryItems)->paginate());
+        }
+        
     }
 
     /**
@@ -40,7 +51,7 @@ class LeadController extends Controller
     public function show(Lead $lead)
     {
         //
-        return Lead::all();
+        return new LeadResource($lead);
     }
 
     /**
