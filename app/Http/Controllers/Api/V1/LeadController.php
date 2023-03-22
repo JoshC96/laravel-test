@@ -11,7 +11,9 @@ use App\Http\Resources\V1\LeadResource;
 use App\Http\Resources\V1\LeadCollection;
 use App\Models\Address;
 use App\Services\V1\LeadQuery;
+use Exception;
 use Illuminate\Http\Request;
+use Throwable;
 
 class LeadController extends Controller
 {
@@ -86,6 +88,21 @@ class LeadController extends Controller
      */
     public function destroy(Lead $lead)
     {
-        //
+        $lead_id = $lead->id;
+        $code = 200;
+        $message = '';
+
+        try{
+            $lead->delete();
+            $message = sprintf('Lead with ID: %d successfully deleted', $lead_id);
+        } catch (Throwable $e) {
+            $code = 500;
+            $message = $e->getMessage();
+        }
+
+        return response()->json([
+            'code' => $code,
+            'message' => $message
+        ]);
     }
 }
