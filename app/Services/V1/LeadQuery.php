@@ -14,7 +14,6 @@ use InvalidArgumentException;
 use Throwable;
 
 /**
- * 
  * @package App\Services\V1
  */
 class LeadQuery

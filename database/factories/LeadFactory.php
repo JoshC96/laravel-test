@@ -12,6 +12,9 @@ use Illuminate\Support\Str;
 class LeadFactory extends Factory
 {
 
+    /**
+     * @var string
+     */
     protected $model = Lead:: class;
 
     /**

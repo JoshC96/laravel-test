@@ -2,11 +2,21 @@
 
 namespace App\Http\Resources\V1;
 
+use Illuminate\Http\Request;
+use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
+use JsonSerializable;
 
+/**
+ * @package App\Http\Resources\V1
+ */
 class LeadResource extends JsonResource
 {
-    public function toArray($request)
+    /**
+     * @param Request $request 
+     * @return array|Arrayable|JsonSerializable 
+     */
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,

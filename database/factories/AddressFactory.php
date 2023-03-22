@@ -13,6 +13,9 @@ use Illuminate\Support\Str;
 class AddressFactory extends Factory
 {
 
+    /**
+     * @var string
+     */
     protected $model = Address::class;
 
     /**

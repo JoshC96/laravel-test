@@ -2,11 +2,19 @@
 
 namespace App\Http\Resources\V1;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @package App\Http\Resources\V1
+ */
 class AddressResource extends JsonResource
 {
-    public function toArray($request)
+    /**
+     * @param Request $request 
+     * @return array 
+     */
+    public function toArray($request): array
     {
         return [
             'street' => $this->street,
