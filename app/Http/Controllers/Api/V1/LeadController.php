@@ -78,6 +78,7 @@ class LeadController extends Controller
     public function update(UpdateLeadRequest $request, Lead $lead)
     {
         $lead->update($request->all());
+        return new LeadResource($lead);
     }
 
     /**

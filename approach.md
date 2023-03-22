@@ -62,7 +62,7 @@ Create a validator for each endpoint's expected request params. // done using Up
 
 Update endpoints to include queries/helpers to meet the following: 
 
-**CREATE endpoint**:
+**CREATE endpoint**: // done
     - This endpoint should accept the following data (parenthesis includes expected validation criteria):
     - First name            (required, max of 255 characters)
     - Last name             (required, max of 255 characters)
@@ -75,7 +75,7 @@ Update endpoints to include queries/helpers to meet the following:
 - A Lead and a related Address should be created
 - The Lead and related Address should be returned in a JSON response
 
-**UPDATE endpoint:**
+**UPDATE endpoint:** // done
 - This endpoint should accept the following data (parenthesis includes expected validation criteria):
     - Lead id (required, Lead id passed in should exist in the Leads table in the database)
     - Phone (required, numeric, exactly 10 characters)
