@@ -21,11 +21,14 @@ class LeadController extends Controller
         $filter = new LeadQuery();
         $queryItems = $filter->transform($request); //return new LeadCollection(Lead::paginate());
 
-        if(count($queryItems) === 0) {
-            return new LeadCollection(Lead::paginate());
-        } else {
-            return new LeadCollection(Lead::where($queryItems)->paginate());
+        $includeAddress = $request->query('includeAddress');
+        $leads = Lead::where($queryItems);
+
+        if($includeAddress) {
+            $leads->with('address');
         }
+
+        return new LeadCollection($leads->paginate()->appends($request->query()));
         
     }
 
