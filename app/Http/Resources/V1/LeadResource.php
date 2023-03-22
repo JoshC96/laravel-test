@@ -15,7 +15,9 @@ class LeadResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'electricBill' => $this->electric_bill,
-            'address' => AddressResource::collection($this->whenLoaded('addresses'))
+            'address' => $this->whenLoaded('address', function () {
+                return $this->address;
+            }),
         ];
     }
 }

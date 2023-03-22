@@ -22,14 +22,21 @@ class LeadController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = new LeadQuery();
-        $queryItems = $filter->transform($request); //return new LeadCollection(Lead::paginate());
+        $query = new LeadQuery();
+        $queryItems = $query->transform($request);
+        $leads = Lead::where($queryItems)
+            ->whereNull('deleted_at')
+            ->with('address');
 
-        $includeAddress = $request->query('includeAddress');
-        $leads = Lead::where($queryItems);
+        $bill_threshold = env('ELECTRIC_BILL_THRESHOLD', 250);
+        $quality = $request->query('quality');
 
-        if($includeAddress) {
-            $leads->with('address');
+        if ($quality) {
+            if ($quality === 'premium') {
+                $leads->where('electric_bill', '>=', $bill_threshold);
+            } elseif ($quality === 'standard') {
+                $leads->where('electric_bill', '<', $bill_threshold);
+            }
         }
 
         return new LeadCollection($leads->paginate()->appends($request->query()));
