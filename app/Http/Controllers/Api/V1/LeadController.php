@@ -62,8 +62,10 @@ class LeadController extends Controller
      */
     public function show(Lead $lead)
     {
-        //
-        return new LeadResource($lead);
+        return response()->json([
+            'lead' => new LeadResource($lead), 
+            'address' => new AddressResource($lead->address)
+        ]);
     }
 
     /**

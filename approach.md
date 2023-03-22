@@ -82,13 +82,15 @@ Update endpoints to include queries/helpers to meet the following:
 - The Lead matching the passed in Lead ID should be updated to add / update the passed in Phone
 - The Lead and related Address should be returned in a JSON response
 
-**Delete endpoint:**
+**Delete endpoint:** // done
 - This endpoint should accept a Lead ID
 - The Lead and related Address matching the Lead ID should be *soft deleted*
     - All fields except IDs and Timestamps should be set to NULL
 - A success response should be returned
 
-**Read (single Lead) endpoint:**
+In-development note: need soft delete, looks like it's a trait but there's issues with deleted_at missing column, will generate a new migration. Edit: this worked.
+
+**Read (single Lead) endpoint:** // done
 - This endpoint should accept a Lead ID
 - The Lead and related Address should be returned in a JSON response
 
