@@ -65,6 +65,13 @@ class LeadQuery
     }
 
     /**
+     * Handles when a user queries for specific field data. 
+     * Example: 
+     *      This URL will be tranformed into an eloquent query to fetch leads
+     *      that are "like" josh@test.com.
+     *      `/api/v1/leads?email[like]=josh@test.com`
+     * Fields and Operators can be found in $allowedFields
+     * 
      * @param Request $request 
      * @return array 
      */
@@ -90,6 +97,17 @@ class LeadQuery
     }
 
     /**
+     * Returns all leads (paginated) that haven't been soft deleted.
+     * Handles when a user queries for specific field data. 
+     * Example: 
+     *      This URL will be tranformed into an eloquent query to fetch leads
+     *      that are "like" josh@test.com.
+     *      `/api/v1/leads?email[like]=josh@test.com`
+     * Fields and Operators can be found in $allowedFields
+     * 
+     * Optionally, the user can provide a 'quality' parameter to query for 
+     * leads that are above or below the ELECTRIC_BILL_THRESHOLD found in .env.
+     * 
      * @param Request $request 
      * @return LeadCollection 
      * @throws InvalidArgumentException 
@@ -116,6 +134,8 @@ class LeadQuery
     }
 
     /**
+     * Creates a new lead and address and returns them as separated JSON
+     * 
      * @param Request $request 
      * @return JsonResponse 
      * @throws BindingResolutionException 
@@ -130,7 +150,14 @@ class LeadQuery
         return response()->json(['lead' => $lead, 'address' => $address]);
     }
 
-    public function deleteLeadFromApi(Lead $lead)
+    /**
+     * Deletes (soft-delete) a given lead and catches any exceptions. 
+     * 
+     * @param Lead $lead 
+     * @return JsonResponse 
+     * @throws BindingResolutionException 
+     */
+    public function deleteLeadFromApi(Lead $lead): JsonResponse
     {
         $lead_id = $lead->id;
         $code = 200;
