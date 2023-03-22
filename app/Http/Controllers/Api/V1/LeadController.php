@@ -45,7 +45,7 @@ class LeadController extends Controller
      */
     public function store(StoreLeadRequest $request)
     {
-        //
+        return new LeadResource(Lead::create($request->all()));
     }
 
     /**
