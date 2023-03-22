@@ -28,7 +28,7 @@ class UpdateLeadRequest extends FormRequest
             return [
                 'firstName' => ['required', 'max:255'],
                 'lastName' => ['required', 'max:255'],
-                'email' => ['required', 'email'],
+                'email' => ['required', 'email', 'unique:leads'],
                 'phone' => [''], // not specified as needing a rule on the readme
                 'electricBill' => ['required', 'integer'],
                 'street' => ['required', 'max:255'],
@@ -40,7 +40,7 @@ class UpdateLeadRequest extends FormRequest
             return [
                 'firstName' => ['sometimes', 'max:255'],
                 'lastName' => ['sometimes', 'max:255'],
-                'email' => ['sometimes', 'email'],
+                'email' => ['sometimes', 'email', 'unique:leads'],
                 'phone' => [''], 
                 'electricBill' => ['sometimes', 'integer'],
                 'street' => ['sometimes', 'max:255'],

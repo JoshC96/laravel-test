@@ -103,7 +103,7 @@ Update endpoints to include queries/helpers to meet the following:
 
 7. 
 
-Add docblocks, type annotations, add return types, test again. 
+Add docblocks, type annotations, add return types, test again. Clean up leftover comments.
 
 
 8. 

@@ -14,6 +14,7 @@ class Address extends Model
         'city',
         'state',
         'zip',
+        'lead_id'
     ];
 
     public function lead()

@@ -6,8 +6,10 @@ use App\Http\Requests\V1\StoreLeadRequest;
 use App\Http\Requests\V1\UpdateLeadRequest;
 use App\Models\Lead;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\V1\AddressResource;
 use App\Http\Resources\V1\LeadResource;
 use App\Http\Resources\V1\LeadCollection;
+use App\Models\Address;
 use App\Services\V1\LeadQuery;
 use Illuminate\Http\Request;
 
@@ -45,7 +47,12 @@ class LeadController extends Controller
      */
     public function store(StoreLeadRequest $request)
     {
-        return new LeadResource(Lead::create($request->all()));
+        $request_params = $request->all();        
+        $lead = new LeadResource(Lead::create($request->all()));
+        $request_params['lead_id'] = $lead->id;
+        $address = new AddressResource(Address::create($request_params));
+
+        return response()->json(['lead' => $lead, 'address' => $address]);
     }
 
     /**

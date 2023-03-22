@@ -25,7 +25,7 @@ class StoreLeadRequest extends FormRequest
         return [
             'firstName' => ['required','max:255'],
             'lastName' => ['required', 'max:255'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'unique:leads'],
             'phone' => [''], // not specified as needing a rule on the readme
             'electricBill' => ['required', 'integer'],
             'street' => ['required', 'max:255'],
