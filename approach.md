@@ -44,23 +44,23 @@ Run seed queries
 
 - Create controllers inside an API directory in /app/controllers that extend `Controller.php`. Consider `#[Route('lead')]` syntax.  
     `php artisan make:controller LeadController --model=Lead --resource --requests`
-     - Key point: "Your Controller should have minimal logic"
-     - Key point: "You should use a Repository to interact with the database"
-     - Key point: "API requests should be validated"
-- Update the routes/api.php file with the new endpoints for GET, PUT, POST, DELETE. 
-- Send back dummy data for now.
-- Set the API version to 1.0
+     - Key point: "Your Controller should have minimal logic" // can simplify LeadController index()
+     - Key point: "You should use a Repository to interact with the database" // not done
+     - Key point: "API requests should be validated"  // done
+- Update the routes/api.php file // done using Route::group
+- Send back dummy data for now. // skipped this and jumped into queries
+- Set the API version to 1.0 // done
 
-In-development note: `return new LeadCollection(Lead::paginate());` doesn't return paginated data, would like to find out why.
+In-development note: `return new LeadCollection(Lead::paginate());` doesn't return pages data but still has meta data, would like to find out why.
 
 5. 
 
-Create a validator for each endpoint's expected request params.
+Create a validator for each endpoint's expected request params. // done using UpdateLeadRequest and StoreLeadRequest classes
 
 
 6. 
 
-Update endpoints to include helpers to meet the following: 
+Update endpoints to include queries/helpers to meet the following: 
 
 **CREATE endpoint**:
     - This endpoint should accept the following data (parenthesis includes expected validation criteria):
@@ -99,3 +99,13 @@ Update endpoints to include helpers to meet the following:
 - If no `quality` parameter is submitted, all (non-soft-deleted) Leads and related Addresses should be returned in a JSON response
 - If the `quality` parameter is equal to `premium`, all (non-soft-deleted) Leads and related Addresses equal to or above the configurable threshold should be returned
 - If the `quality` parameter is equal to `standard`, all (non-soft-deleted) Leads and related Addresses below the configurable threshold should be returned
+
+
+7. 
+
+Add docblocks, type annotations, add return types, test again. 
+
+
+8. 
+
+Review this document again as well as the readme and ensure all requirements are met. Make a video recording.
