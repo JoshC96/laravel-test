@@ -60,9 +60,9 @@ class LeadController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Lead $lead)
+    public function edit(UpdateLeadRequest $request, Lead $lead)
     {
-        //
+        
     }
 
     /**
@@ -70,7 +70,7 @@ class LeadController extends Controller
      */
     public function update(UpdateLeadRequest $request, Lead $lead)
     {
-        //
+        $lead->update($request->all());
     }
 
     /**
